@@ -1,0 +1,16 @@
+[user]
+    name = Gopal Patel
+    email = nixme@stillhope.com
+
+[alias]
+    st = status
+    ci = commit
+    co = checkout
+    wc = whatchanged
+
+[color]
+    ui = auto
+    pager = true
+
+[url "git@github.com:nixme/"]
+    insteadOf = github:
