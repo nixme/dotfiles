@@ -14,3 +14,6 @@
 
 [url "git@github.com:nixme/"]
     insteadOf = github:
+
+[core]
+    excludesfile = /Users/nixme/.gitignore_global

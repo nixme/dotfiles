@@ -1,0 +1,18 @@
+# --- EMACS ---
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+.elc
+auto-save-list
+tramp
+
+# --- OS X ---
+.DS_Store?
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+
+# --- RVM ---
+.rvmrc
