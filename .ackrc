@@ -1,0 +1,11 @@
+# case-insensitive searching
+--ignore-case
+
+# sort results by filename
+--sort-files
+
+# add filetypes that ack normally ignores
+--type-set=haml=.haml
+--type-set=sass=.sass,.scss
+--type-set=slim=.slim
+--type-set=coffeescript=.coffee
