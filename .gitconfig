@@ -7,6 +7,7 @@
     ci = commit
     co = checkout
     wc = whatchanged
+    unstage = reset HEAD --
 
 [color]
     ui = auto
