@@ -1,1 +1,8 @@
 *
+
+# although the above '*' rule will ignore everything, files that should never be
+#   tracked are explictly listed here for the sake of documentation
+.zsh/history
+.zsh/.zcompdump
+.zsh/.zcompcache
+.zsh/local-env.zsh
