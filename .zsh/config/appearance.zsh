@@ -10,7 +10,7 @@ ls --color -d . &>/dev/null 2>&1 &&
   alias ls='ls -G'               # BSD
 
 # use grc (if available) to colorize common commands (ping, diff, etc.)
-if brew --prefix grc > /dev/null 2>&1; then   # grc installed via homebrew
+if brew list grc > /dev/null 2>&1; then       # grc installed via homebrew
   source "`brew --prefix grc`/etc/grc.bashrc"
 fi  # TODO: add detection for grc on arch, ubuntu, generic, etc.
 
