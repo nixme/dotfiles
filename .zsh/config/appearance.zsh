@@ -55,7 +55,8 @@ fi  # TODO: add detection for grc on arch, ubuntu, generic, etc.
   function prompt_rvm {
     local rvm_info=$($rvm_path/bin/rvm-prompt i v g 2> /dev/null)
     [[ -n $rvm_info ]] &&
-      echo "%{$fg_no_bold[magenta]%}rvm:%{$fg_bold[white]%}$rvm_info$rc"
+      echo -n "%{$fg_no_bold[magenta]%}rvm:" &&
+      echo "%{$fg_bold[white]%}$rvm_info%{$reset_color%}"
   }
 
   PROMPT="[$user$machine] \$prompt_path $caret"
