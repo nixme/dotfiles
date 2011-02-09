@@ -1,0 +1,35 @@
+! Xft ----------------
+Xft.autohint:  0
+Xft.lcdfilter: lcddefault
+Xft.hintstyle: hintfull
+Xft.hinting:   1
+Xft.antialias: 1
+Xft.dpi:       96
+Xft.rgba:      rgb
+
+! rxvt-unicode -------
+URxvt.perl-ext-common: default,tabbed,matcher
+URxvt.font: xft:Droid Sans Mono:pixelsize=13:Regular
+URxvt.boldFont: xft:Droid Sans Mono:pixelsize=13:Bold
+URxvt.italicFont: xft:Droid Sans Mono:pixelsize=13:Italic
+URxvt.boldItalicFont: xft:Droid Sans Mono:pixelsize=13:Bold:Italic
+URxvt.letterSpace: -1
+! ir-black color theme -------
+URxvt.background: #131313
+URxvt.foreground: #F2F2F2
+URxvt.color0: #4E4E4E
+URxvt.color8: #555555
+URxvt.color1: #FF6C60
+URxvt.color9: #FF0000
+URxvt.color2: #A8FF60
+URxvt.color10: #00FF00
+URxvt.color3: #FFFFB6
+URxvt.color11: #FFFF00
+URxvt.color4: #96CBFF
+URxvt.color12: #0000FF
+URxvt.color5: #FF73FF
+URxvt.color13: #FF00FF
+URxvt.color6: #9DFFFF
+URxvt.color14: #00FFFF
+URxvt.color7: #EEEEEE
+URxvt.color15: #FFFFFF
