@@ -53,7 +53,7 @@ fi  # TODO: add detection for grc on arch, ubuntu, generic, etc.
 
   # rvm info if rvm is active
   function prompt_rvm {
-    local rvm_info=$($rvm_path/bin/rvm-prompt i v g 2> /dev/null)
+    local rvm_info=$(rvm-prompt i v g 2> /dev/null)
     [[ -n $rvm_info ]] &&
       echo -n "%{$fg_no_bold[magenta]%}rvm:" &&
       echo "%{$fg_bold[white]%}$rvm_info%{$reset_color%}"
