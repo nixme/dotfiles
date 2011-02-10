@@ -1,5 +1,5 @@
-# correct spelling for all arguments on a line
-setopt correct_all
+# correct spelling for commands only
+setopt correct
 
 # turn off correction for some [destructive] commands
 for cmd (mv cp mkdir gist man) alias $cmd="nocorrect $cmd"
