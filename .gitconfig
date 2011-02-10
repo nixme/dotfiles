@@ -17,7 +17,7 @@
     insteadOf = github:
 
 [core]
-    excludesfile = /Users/nixme/.gitignore_global
+    excludesfile = ~/.gitignore_global
 
 [branch]
     autosetuprebase = always
