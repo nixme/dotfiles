@@ -9,10 +9,10 @@ Xft.rgba:      rgb
 
 ! rxvt-unicode -------
 URxvt.perl-ext-common: default,tabbed,matcher
-URxvt.font: xft:Droid Sans Mono:pixelsize=13:Regular
-URxvt.boldFont: xft:Droid Sans Mono:pixelsize=13:Bold
-URxvt.italicFont: xft:Droid Sans Mono:pixelsize=13:Italic
-URxvt.boldItalicFont: xft:Droid Sans Mono:pixelsize=13:Bold:Italic
+URxvt.font: xft:Droid Sans Mono:pixelsize=11:Regular
+URxvt.boldFont: xft:Droid Sans Mono:pixelsize=11:Bold
+URxvt.italicFont: xft:Droid Sans Mono:pixelsize=11:Italic
+URxvt.boldItalicFont: xft:Droid Sans Mono:pixelsize=11:Bold:Italic
 URxvt.letterSpace: -1
 ! ir-black color theme -------
 URxvt.background: #131313
