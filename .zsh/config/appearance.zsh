@@ -9,10 +9,21 @@ ls --color -d . &>/dev/null 2>&1 &&
   alias ls='ls --color=tty' ||   # GNU
   alias ls='ls -G'               # BSD
 
-# use grc (if available) to colorize common commands (ping, diff, etc.)
-if brew list grc > /dev/null 2>&1; then       # grc installed via homebrew
-  source "`brew --prefix grc`/etc/grc.bashrc"
-fi  # TODO: add detection for grc on arch, ubuntu, generic, etc.
+# use grc (if available) to colorize common commands
+if command -v grc &>/dev/null; then
+  alias colorify="`which grc` -es --colour=auto"
+  alias configure='colorify ./configure'
+  alias diff='colorify diff'
+  alias make='colorify make'
+  alias gcc='colorify gcc'
+  alias g++='colorify g++'
+  alias as='colorify as'
+  alias gas='colorify gas'
+  alias ld='colorify ld'
+  alias netstat='colorify netstat'
+  alias ping='colorify ping'
+  alias traceroute='colorify traceroute'
+fi
 
 # prompt styling
 () {
