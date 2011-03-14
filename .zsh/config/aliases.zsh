@@ -57,6 +57,12 @@ alias gu='git unstage'        # unstage file from index, defined in ~/.gitconfig
 alias gci='git commit'
 alias gco='git checkout'
 
+# tmux
+alias t='tmux'
+alias ta='tmux attach-session'
+alias tl='tmux list-sessions'
+alias tn='tmux new-session'
+
 # misc
 alias _='sudo'
 alias -g L="| $PAGER"         # easy paging
