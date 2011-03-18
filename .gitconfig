@@ -7,6 +7,9 @@
     ci = commit
     co = checkout
     wc = whatchanged
+    f  = fetch
+    m  = merge
+    r  = rebase
     unstage = reset HEAD --
 
 [color]
