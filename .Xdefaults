@@ -8,7 +8,7 @@ Xft.dpi:       96
 Xft.rgba:      rgb
 
 ! rxvt-unicode -------
-URxvt.perl-ext-common: default,tabbed,matcher
+URxvt.perl-ext-common: default,matcher
 URxvt.font: xft:Droid Sans Mono:pixelsize=11:Regular
 URxvt.boldFont: xft:Droid Sans Mono:pixelsize=11:Bold
 URxvt.italicFont: xft:Droid Sans Mono:pixelsize=11:Italic
