@@ -24,3 +24,10 @@
 
 [branch]
     autosetuprebase = always
+
+[diff]
+    renames = copies                    # identify renames and copies
+    mnemonicprefix = true               # use better symbols than A and B
+
+[push]
+    default = tracking                  # push current branch only
