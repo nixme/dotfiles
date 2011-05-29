@@ -6,4 +6,4 @@ DIRSTACKSIZE=20           # max size of directory stack
 
 # list directory whenever working directory changes
 chpwd_ls() { l; }
-chpwd_functions+=chpwd_ls
+chpwd_functions=(chpwd_ls $chpwd_functions)
