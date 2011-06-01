@@ -1,6 +1,11 @@
 # case-insensitive searching
 --ignore-case
 
+# directory ignores
+--ignore-dir=.git
+--ignore-dir=.svn
+--ignore-dir=.idea
+
 # sort results by filename
 --sort-files
 
