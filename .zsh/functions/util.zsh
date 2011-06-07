@@ -22,3 +22,8 @@ shuffle() {
   done
   ) | sort | sed 's/^[0-9]* //'
 }
+
+# quick-convert ERB files to Haml using html2haml
+h2h() {
+  html2haml "$1".html.erb > "$1".html.haml && rm "$1".html.erb
+}
