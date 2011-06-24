@@ -31,3 +31,6 @@
 
 [push]
     default = tracking                  # push current branch only
+
+[github]
+    user = nixme
