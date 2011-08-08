@@ -12,7 +12,6 @@ export LC_CTYPE="en_US.UTF-8"
 for dir (
   $homebrew/sbin             # homebrew-installed system binaries
   $homebrew/bin              # homebrew-installed user binaries
-  $homebrew/share/npm/bin    # node.js npm binaries
   ~/bin                      # personal scripts and binaries
 ) if [[ -d $dir ]]; then path=($dir $path); fi
 
@@ -21,11 +20,11 @@ for dir (
   $homebrew/share/man        # homebrew-installed manpages
 ) if [[ -d $dir ]]; then manpath=($dir $manpath); fi
 
-# NODE_PATH
+# NODE_PATH (not a special zsh parameter, so explicit exports)
 for dir (
   $homebrew/lib/node         # homebrew-installed node.js libraries
-) if [[ -d $dir ]]; then node_path=($dir $node_path); fi
-export NODE_PATH=$node_path  # not a special zsh parameter, so explicit export
+  $homebrew/lib/node_modules
+) if [[ -d $dir ]]; then export NODE_PATH=$dir:$NODE_PATH; fi
 
 # PAGER: use 'most' if available, otherwise fallback to 'less'
 most &>/dev/null 2>&1 && export PAGER="most" || export PAGER="less"
