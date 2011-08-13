@@ -1,5 +1,6 @@
 zmodload -i zsh/complist        # load completion listing extensions
 autoload -U compinit; compinit  # initialize completion system
+autoload -U zmv                 # load zmv for globbing mv alternative
 setopt extended_glob            # treat #, ~, and ^ as globbing patterns
 setopt numeric_glob_sort        # numerically sort numeric filename matches
 setopt complete_in_word         # keep cursor position during completion
