@@ -62,15 +62,19 @@ fi
     fi
   }
 
-  # rvm info if rvm is active
-  function prompt_rvm {
+  # Ruby info if RVM or rbenv are active
+  function prompt_ruby {
+    local rbenv_info=$(rbenv version-name 2> /dev/null)
     local rvm_info=$(rvm-prompt i v g 2> /dev/null)
-    [[ -n $rvm_info ]] &&
-      echo -n "%{$fg_no_bold[magenta]%}rvm:" &&
-      echo "%{$fg_bold[white]%}$rvm_info%{$reset_color%}"
+    local ruby_info=${rbenv_info:-$rvm_info}
+    if [[ -n $ruby_info ]]; then
+      echo -n "%{$fg_no_bold[magenta]%}"
+      [[ -n $rbenv_info ]] && echo -n "rbenv" || echo -n "rvm"
+      echo ":%{$fg_bold[white]%}$ruby_info%{$reset_color%}"
+    fi
   }
 
   PROMPT="[$user$machine] \$prompt_path $caret"
   PROMPT2="  %U%_%u $caret"                   # indent secondary lines
-  RPROMPT="\$(prompt_rvm) \$prompt_vcs"       # show rvm and vcs info on right
+  RPROMPT="\$(prompt_ruby) \$prompt_vcs"      # Ruby and VCS info on right
 }

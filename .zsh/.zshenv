@@ -12,6 +12,7 @@ export LC_CTYPE="en_US.UTF-8"
 for dir (
   $homebrew/sbin             # homebrew-installed system binaries
   $homebrew/bin              # homebrew-installed user binaries
+  ~/.rbenv/bin               # rbenv binaries
   ~/bin                      # personal scripts and binaries
 ) if [[ -d $dir ]]; then path=($dir $path); fi
 
