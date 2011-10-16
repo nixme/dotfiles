@@ -13,6 +13,7 @@ for dir (
   $homebrew/sbin             # homebrew-installed system binaries
   $homebrew/bin              # homebrew-installed user binaries
   ~/.rbenv/bin               # rbenv binaries
+  $homebrew/share/python     # homebrew python's distutils binaries
   ~/bin                      # personal scripts and binaries
 ) if [[ -d $dir ]]; then path=($dir $path); fi
 
