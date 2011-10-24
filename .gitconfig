@@ -26,6 +26,9 @@
 [core]
     excludesfile = ~/.gitignore_global
 
+[status]
+    relativePaths = false               # Show paths relative to repo root
+
 [branch]
     autosetuprebase = always
 
