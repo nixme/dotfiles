@@ -11,6 +11,7 @@
     m  = merge
     r  = rebase
     unstage = reset HEAD --
+    loglines = log --pretty=format:'%Cred%h%Creset %s %Cblue(%an - %cr)%Creset%Cgreen%d%Creset'
 
 [color]
     ui = auto

@@ -48,6 +48,7 @@ if command -v hub &>/dev/null; then
 fi
 alias g='git'
 alias gl='git log'
+alias gll='git loglines'
 alias gwc='git whatchanged'
 alias gs='git status'
 alias gst='git status'
