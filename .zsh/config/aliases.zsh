@@ -65,6 +65,8 @@ alias gco='git checkout'
 alias gf='git fetch'
 alias gm='git merge'
 alias gr='git rebase'
+alias gsm='git sm'            # git submodule
+alias gsmu='git smu'          # git submodule update --init --recursive
 
 # tmux
 alias t='tmux'

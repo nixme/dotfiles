@@ -10,6 +10,8 @@
     f  = fetch
     m  = merge
     r  = rebase
+    sm = submodule
+    smu = submodule update --init --recursive
     unstage = reset HEAD --
     where = name-rev                    # Which release contains a commit?
     contains = branch -a --contains     # Which branch contains a commit?
