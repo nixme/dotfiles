@@ -27,3 +27,14 @@ shuffle() {
 h2h() {
   html2haml "$1".html.erb > "$1".html.haml && rm "$1".html.erb
 }
+
+# Optimize PNG filesize without quality loss. Depends on both pngcrush and
+# optipng.
+pngburn() {
+  pngcrush -rem allb -brute -reduce "$1" temp.png
+  optipng -o7 temp.png
+  mv temp.png "$1"
+}
+pngburndir() {
+  for png in `ls *.png`; do pngburn "$png"; done
+}
