@@ -17,6 +17,7 @@
     contains = branch -a --contains     # Which branch contains a commit?
     compare = cherry -v                 # Which commits aren't upstream?
     loglines = log --pretty=format:'%Cred%h%Creset %s %Cblue(%an - %cr)%Creset%Cgreen%d%Creset'
+    detach = checkout HEAD^0
 
 [color]
     ui = auto
