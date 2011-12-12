@@ -14,6 +14,7 @@ for dir (
   $homebrew/bin              # homebrew-installed user binaries
   ~/.rbenv/bin               # rbenv binaries
   $homebrew/share/python     # homebrew python's distutils binaries
+  ~/Applications/Emacs.app/Contents/MacOS/bin   # Emacs CLI binaries (OS X)
   ~/bin                      # personal scripts and binaries
 ) if [[ -d $dir ]]; then path=($dir $path); fi
 
@@ -32,7 +33,9 @@ for dir (
 most &>/dev/null 2>&1 && export PAGER="most" || export PAGER="less"
 export ACK_PAGER=$PAGER      # use paging for ack results
 
-# EDITOR: ??? todo: emacsclient -nw
+# EDITOR: Connect to an Emacs daemon for quick bootup. Don't autostart daemon.
+export EDITOR="emacsclient -c"
+export SUDO_EDITOR=$EDITOR
 
 # load local environment customizations
 [[ -r $ZDOTDIR/local-env.zsh ]] && source $ZDOTDIR/local-env.zsh

@@ -30,6 +30,7 @@ alias 9='cd +9'
 # files
 alias cp='cp -i'              # ask before overwriting during copy
 alias m=$PAGER                # use to view files, e.g. "m .zshrc"
+alias e=$EDITOR               # Edit files in Emacs
 
 # directories
 alias md='mkdir -p'
