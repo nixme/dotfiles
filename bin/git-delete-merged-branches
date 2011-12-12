@@ -1,0 +1,47 @@
+#!/bin/bash
+#
+# git-delete-merged-branches <remote>
+#
+# Safely delete local and upstream remote branches that have been merged to the
+# remote master.
+#
+
+remote=${1:-origin}     # Use 'origin' remote by default
+
+echo "Fetching and pruning deleted branches..."
+git fetch $remote        &> /dev/null    # Sync with the remote
+git remote prune $remote &> /dev/null    # Prune branches that no longer exist
+
+branches=($(git branch -r --merged ${remote}/master |
+              grep -v -e "${remote}/master" -e "${remote}/HEAD")
+          $(git branch --merged ${remote}/master | grep -v "master"))
+
+if [[ ${#branches[@]} == 0 ]]; then
+  echo "No branches found that are completely merged to master"
+  exit 0
+fi
+
+for branch in ${branches[@]}; do
+  name=${branch##*/}    # Just the name, e.g. origin/blah => blah
+
+  read -p "Delete ${branch}? (y/n/q) " answer
+  case $answer in
+    [Yy]*)
+      echo "  Deleting ${name} locally..."
+      git branch -d $name &> /dev/null
+
+      # Delete the upstream branch if this is a remote branch
+      if [[ $branch == $remote/* ]]; then
+        echo "  Deleting ${branch} upstream..."
+        git push $remote :$name &> /dev/null
+      fi
+
+      ;;
+
+    [Nn]*) ;;  # No-op, skip to next branch
+
+    [Qq]*) exit 0 ;;
+
+    *)     echo "  Please answer y or n or q."
+  esac
+done
