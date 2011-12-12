@@ -1,0 +1,18 @@
+#!/bin/bash
+#
+# tmux-copy
+#
+# Copy stdin to OS clipboard. Used in conjunction with tmux bindings to make
+# copies from selections easy.
+#
+# Requires reattach-to-user-namespace on OS X to let tmux child processes access
+# the system pasteboard. Requires xclip on Linux.
+#
+
+if command -v pbcopy &>/dev/null; then
+  COMMAND="reattach-to-user-namespace pbcopy"  # OS X
+else
+  COMMAND="xclip -i"                           # Linux
+fi
+
+tmux show-buffer | $COMMAND

@@ -1,0 +1,19 @@
+#!/bin/bash
+#
+# tmux-paste
+#
+# Paste contents of OS clipboard to the current tmux buffer. Used in conjunction
+# with tmux bindings to make pastes easy.
+#
+# Requires reattach-to-user-namespace on OS X to let tmux child processes access
+# the system pasteboard. Requires xclip on Linux.
+#
+
+if command -v pbpaste &>/dev/null; then
+  CONTENTS=$(reattach-to-user-namespace pbpaste)  # OS X
+else
+  CONTENTS=$(xclip -o)                            # Linux
+fi
+
+tmux set-buffer "$CONTENTS"
+tmux paste-buffer
