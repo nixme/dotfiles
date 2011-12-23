@@ -13,7 +13,8 @@ git fetch $remote        &> /dev/null    # Sync with the remote
 git remote prune $remote &> /dev/null    # Prune branches that no longer exist
 
 branches=($(git branch -r --merged ${remote}/master |
-              grep -v -e "${remote}/master" -e "${remote}/HEAD")
+              grep -v -e "${remote}/master" -e "${remote}/HEAD" |
+              grep -e "${remote}/*")
           $(git branch --merged ${remote}/master | grep -v "master"))
 
 if [[ ${#branches[@]} == 0 ]]; then
