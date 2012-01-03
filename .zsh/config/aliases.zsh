@@ -39,10 +39,6 @@ alias rd='rmdir'
 # job control
 alias j='jobs'
 
-# history
-alias history='fc -l 1'       # lists all history
-alias h='fc -l 1 | ack -i'    # search history
-
 # git
 if command -v hub &>/dev/null; then
   alias git='hub'             # use hub as a git wrapper if available

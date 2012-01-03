@@ -1,3 +1,13 @@
+# List and search history. Without any arguments, lists the last 25 commands.
+# Otherwise does a case-insensitive search of all history for the passed terms.
+h() {
+  if [[ "$#" -ge 1 ]]; then
+    history -fD +1 | ack -i $@
+  else
+    history -fD -25
+  fi
+}
+
 # make directory and change to it
 mdc() { mkdir -p "$1" && cd "$1" }
 
