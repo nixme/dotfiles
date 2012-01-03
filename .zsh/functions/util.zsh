@@ -48,3 +48,8 @@ pngburn() {
 pngburndir() {
   for png in `ls *.png`; do pngburn "$png"; done
 }
+
+# curl with JSON
+jsoncurl() {
+  curl -H "Content-type: application/json" -H "Accept: application/json" $*
+}
