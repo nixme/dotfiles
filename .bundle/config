@@ -1,0 +1,3 @@
+---
+BUNDLE_BIN: 'true'
+BUNDLE_PATH: vendor/bundle
