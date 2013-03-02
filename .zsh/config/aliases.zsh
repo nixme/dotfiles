@@ -59,6 +59,7 @@ alias gap='git add -p'        # interactively add files to index
 alias gu='git unstage'        # unstage file from index, defined in ~/.gitconfig
 alias gci='git commit'
 alias gco='git checkout'
+alias gcop='git checkout @{-1}'
 alias gf='git fetch'
 alias gm='git merge'
 alias gr='git rebase'
