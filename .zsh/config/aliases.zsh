@@ -12,6 +12,7 @@ alias sl=ls                   # accidental misspelling
 alias d='dirs -v'             # list directory stack
 alias cd..='cd ..'            # accidental misspelling
 alias -- -='cd -'             # flip to last dir with just '-'
+alias cdr='cd $(git rev-parse --show-toplevel)'  # Jump to the root of a git repository
 alias pu='pushd'
 alias po='popd'
 alias -g ...='../..'
