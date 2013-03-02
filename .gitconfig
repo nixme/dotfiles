@@ -45,3 +45,5 @@
 
 [github]
     user = nixme
+[rerere]
+	enabled = true
