@@ -5,6 +5,9 @@
 --ignore-dir=.git
 --ignore-dir=.svn
 --ignore-dir=.idea
+--ignore-dir=vendor/bundle
+--ignore-dir=tmp
+--ignore-dir=gems
 
 # sort results by filename
 --sort-files
