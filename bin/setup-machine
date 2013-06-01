@@ -1,0 +1,177 @@
+#!/bin/bash -x -e
+#
+# Set up my preferred OS defaults, common programs, and general environment.
+#
+# OS X 10.8 Mountain Lion only for now.
+#
+# Inspired by https://github.com/mathiasbynens/dotfiles/blob/master/.{osx,brew}
+#
+
+
+# By this point the following should be true:
+# - Xcode installed
+# - Xcode CLI tools installed
+# - Computer has been named via System Preferences > Sharing
+
+# Preauthorize with keep-alive.
+sudo -v
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+mkdir -p ~/Projects
+mkdir -p ~/Applications
+
+
+################################### HOMEBREW ###################################
+
+ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
+
+brew install git tmux most tree readline chruby ruby-build nodejs \
+             reattach-to-user-namepsace ack the_silver_searcher heroku-toolbelt
+
+# Latest XCode CLI tools do not include regular GCC, only LLVM-GCC. So install
+# gcc-4.2 based on Apple's latest sources.
+brew tap homebrew/dupes
+brew install apple-gcc42
+
+
+################################ ZSH & DOTFILES ################################
+
+brew install --disable-etcdir zsh
+$homebrew_zsh=/usr/local/bin/zsh
+echo $homebrew_zsh | sudo tee -a /etc/shells
+sudo chsh -s $hombrew_zsh $USER
+
+if [ ! -d ~/.dotfiles ]; then
+  curl https://raw.github.com/nixme/dotfiles/master/bin/install-dotfiles | sh
+fi
+
+
+#################################### EMACS #####################################
+
+# Latest release
+url=$(curl http://emacsformacosx.com/atom/release |
+    ruby -r"rexml/document" -e "puts REXML::Document.new($<).elements['feed/entry/link'].attributes['href']")
+dmg=_emacs_app.dmg
+curl -L -o $dmg $url
+hdiutil mount $dmg
+cp -R /Volumes/Emacs/Emacs.app ~/Applications
+hdiutil unmount /Volumes/Emacs
+rm $dmg
+
+
+##################################### RUBY #####################################
+
+ruby19=1.9.3-p429                   # Current patchlevels
+ruby20=2.0.0-p195
+global_gems="bundler spring pry"    # Gems to install globally for each ruby
+
+# Compile with real GCC and readline. Clang or gcc-llvm make for a buggy MRI,
+# and libedit messes up colored prompts.
+export CC=gcc-4.2
+export RUBY_CONFIGURE_OPTS="--with-readline-dir=`brew --prefix readline`"
+rbenv install $ruby19
+rbenv install $ruby20
+
+rbenv global $ruby20                # Default to Ruby 2.0
+rbenv rehash
+
+rbenv shell $ruby19
+gem install $global_gems
+rbenv shell $ruby20
+gem install $global_gems
+
+
+#################################### ITERM #####################################
+
+read -r -p "iTerm2 Manual Install:
+1. Download iTerm2 from https://code.google.com/p/iterm2/downloads/list
+2. Install to ~/Applications
+3. Open iTerm2 and then it's Preferences
+4. Select 'Load preferences from a custom folder or URL:'
+5. Choose '~/.iterm2'
+
+Press Return when finished."
+
+
+#################################### JAVA ######################################
+
+read -r -p "Install Oracle Java JDK 7 from
+  http://www.oracle.com/technetwork/java/javase/downloads/index.html
+Press Return when finished."
+
+
+################################### SETTINGS ###################################
+
+# Expand save and print panels by default
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode  -bool true
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint     -bool true
+
+# Save to disk (not iCloud) by default
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud   -bool false
+
+# Automatically quit printer app once the print jobs complete
+defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
+
+# Enable access for assistive devices
+echo -n 'a' | sudo tee /private/var/db/.AccessibilityAPIEnabled > /dev/null 2>&1
+sudo chmod 444 /private/var/db/.AccessibilityAPIEnabled
+
+# Disable press-and-hold for character alternatives in favor of key repeat
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+
+# Maximum keyboard repeat rate
+defaults write NSGlobalDomain KeyRepeat -int 0
+
+# Show icons for hard drives, servers, and removable media on the desktop
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
+defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
+defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
+defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
+
+# Finder: show hidden files by default
+defaults write com.apple.finder AppleShowAllFiles -bool true
+
+# Finder: show all filename extensions
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+# Finder: show status bar
+defaults write com.apple.finder ShowStatusBar -bool true
+
+# Display full POSIX path as Finder window title
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+
+# When performing a search, search the current folder by default
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+
+# Disable the warning when changing a file extension
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+
+# Show item info near icons on the desktop and in other icon views
+/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
+
+# Enable snap-to-grid for icons on the desktop and in other icon views
+/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+
+# Add 'Path' button to Finder toolbar right after 'Back/Forward'
+/usr/libexec/PlistBuddy -c 'Add "NSToolbar Configuration Browser:TB Item Identifiers:1" string "com.apple.finder.PATH"' ~/Library/Preferences/com.apple.finder.plist
+
+# Use list view in all Finder windows by default
+defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+
+# Automatically hide and show the Dock
+defaults write com.apple.dock autohide -bool true
+
+# Enable the Develop menu, Web Inspector, and context menu item for the
+# Inspector in Safari.
+defaults write com.apple.Safari IncludeDevelopMenu -bool true
+defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
+defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
+defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
+
+
+
+echo "Restart the computer now for good effect :)"
