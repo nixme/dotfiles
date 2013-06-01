@@ -1,9 +1,8 @@
 dotfiles
 ========
 
-In `~`:
+```
+curl https://raw.github.com/nixme/dotfiles/master/bin/install-dotfiles | sh
+```
 
-1. `git init`
-2. `git remote add -f origin https://github.com/nixme/dotfiles.git`
-3. `git reset hard -- origin/master`
-4. `mv .git .dotfiles`
+_(running a random script off the internet is lame. thankfully it's my script. inspect it first)_

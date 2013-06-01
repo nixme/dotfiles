@@ -1,0 +1,20 @@
+#!/bin/bash -x -e
+#
+# Install dotfiles to ~
+#
+# Assumes `git` exists in PATH (which it should on even bare OS X 10.8).
+
+cd ~
+
+git init
+git remote add -f origin git@github.com:nixme/dotfiles.git
+
+git reset hard -- origin/master
+
+git update-index --assume-unchanged ~/.zsh/local-env.zsh
+
+git submodule update --init --recursive
+
+mv ~/.git ~/.dotfiles
+
+echo 'Use "dfgit" to manage the dotfiles repo'
