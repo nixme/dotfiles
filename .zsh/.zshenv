@@ -31,7 +31,11 @@ for dir (
 ) if [[ -d $dir ]]; then export NODE_PATH=$dir:$NODE_PATH; fi
 
 # PAGER: use 'most' if available, otherwise fallback to 'less'
-most &>/dev/null 2>&1 && export PAGER="most" || export PAGER="less"
+if command -v most &>/dev/null; then
+  export PAGER="most"
+else
+  export PAGER="less"
+fi
 export ACK_PAGER=$PAGER      # use paging for ack results
 
 # EDITOR: Connect to an Emacs daemon for quick bootup. Don't autostart daemon.
