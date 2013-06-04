@@ -26,7 +26,8 @@ mkdir -p ~/Applications
 ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
 
 brew install git tmux most tree readline chruby ruby-build nodejs \
-             reattach-to-user-namepsace ack the_silver_searcher heroku-toolbelt
+             reattach-to-user-namepsace ack the_silver_searcher \
+             aspell heroku-toolbelt
 
 # Latest XCode CLI tools do not include regular GCC, only LLVM-GCC. So install
 # gcc-4.2 based on Apple's latest sources.
