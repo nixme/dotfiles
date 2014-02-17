@@ -41,7 +41,7 @@
     mnemonicprefix = true               # use better symbols than A and B
 
 [push]
-    default = tracking                  # push current branch only
+    default = simple                    # Push current branch only
 
 [github]
     user = nixme
