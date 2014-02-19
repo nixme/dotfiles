@@ -29,6 +29,7 @@
 
 [core]
     excludesfile = ~/.gitignore_global
+    trustctime = false                  # OS X issue. See http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/
 
 [status]
     relativePaths = false               # Show paths relative to repo root
@@ -43,7 +44,5 @@
 [push]
     default = simple                    # Push current branch only
 
-[github]
-    user = nixme
 [rerere]
 	enabled = true
