@@ -42,7 +42,7 @@ alias j='jobs'
 
 # git
 if command -v hub &>/dev/null; then
-  alias git='hub'             # use hub as a git wrapper if available
+  eval "$(hub alias -s)"      # Use hub as a git wrapper
 fi
 alias g='git'
 alias gl='git log'
