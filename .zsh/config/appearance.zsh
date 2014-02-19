@@ -62,15 +62,27 @@ fi
     fi
   }
 
-  # Ruby info if RVM or rbenv are active
+  # Ruby info if RVM, rbenv, or chruby are active
   function prompt_ruby {
+    local ruby_engine
+    local ruby_version
     local rbenv_info=$(rbenv version-name 2> /dev/null)
     local rvm_info=$(rvm-prompt i v g 2> /dev/null)
-    local ruby_info=${rbenv_info:-$rvm_info}
-    if [[ -n $ruby_info ]]; then
-      echo -n "%{$fg_no_bold[magenta]%}"
-      [[ -n $rbenv_info ]] && echo -n "rbenv" || echo -n "rvm"
-      echo ":%{$fg_bold[white]%}$ruby_info%{$reset_color%}"
+
+    if [[ -n $RUBY_ROOT ]]; then           # chruby
+      ruby_engine="chruby"
+      ruby_version=$(basename $RUBY_ROOT)
+    elif [[ -n $rbenv_info ]]; then        # rbenv
+      ruby_engine="rbenv"
+      ruby_version=$rbenv_info
+    elif [[ -n $rvm_info ]]; then          # RVM
+      ruby_engine="rvm"
+      ruby_version=$rvm_info
+    fi
+
+    if [[ -n $ruby_engine ]]; then
+      echo -n "%{$fg_no_bold[magenta]%}${ruby_engine}"
+      echo ":%{$fg_bold[white]%}${ruby_version}%{$reset_color%}"
     fi
   }
 
