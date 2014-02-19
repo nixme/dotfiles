@@ -40,6 +40,7 @@
 [diff]
     renames = copies                    # identify renames and copies
     mnemonicprefix = true               # use better symbols than A and B
+    algorithm = histogram               # Better diffs
 
 [push]
     default = simple                    # Push current branch only
