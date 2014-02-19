@@ -18,3 +18,4 @@
 --type-set=mustache=.mustache,.mu,.handlebars,.hbs,.hbars
 --type-set=sass=.sass,.scss
 --type-set=coffeescript=.coffee
+--type-set=emblem=.emblem
