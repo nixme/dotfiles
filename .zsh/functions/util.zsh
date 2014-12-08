@@ -53,3 +53,17 @@ pngburndir() {
 jsoncurl() {
   curl -H "Content-type: application/json" -H "Accept: application/json" $*
 }
+
+# Convert Quicktime screencast to GIF
+# `--good` version of https://gist.github.com/SlexAxton/4989674
+gifify() {
+  if [[ -n "$1" ]]; then
+    gif="${1%.*}.gif"
+    ffmpeg -i $1 -r 10 -vcodec png out-static-%05d.png
+    time convert -verbose +dither -layers Optimize -resize 600x600\> out-static*.png GIF:- | \
+        gifsicle --colors 128 --delay=5 --loop --optimize=3 --multifile - > $gif
+    rm out-static*.png
+  else
+    echo "proper usage: gifify <input_movie.mov>. You DO need to include extension."
+  fi
+}
