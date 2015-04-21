@@ -51,11 +51,12 @@ brew cask install skydrive
 brew cask install microsoft-office
 brew cask install iterm2
 brew cask install rdio
+brew cask install spotify
 brew cask install transmission
 brew cask install github
 brew cask install slack
 brew cask install hipchat
-brew cask install onepassword
+brew cask install 1password
 brew cask install imageoptim
 brew cask install imagealpha
 brew cask install skype
@@ -90,13 +91,13 @@ fi
 
 #################################### EMACS #####################################
 
-brew install emacs --cocoa
+brew install emacs --with-cocoa
 brew linkapps
 
 
 ##################################### RUBY #####################################
 
-ruby="ruby 2.1.5"
+ruby="ruby 2.1.6"
 global_gems="bundler pry"    # Gems to install globally for each ruby
 
 # Compile with real GCC and readline. Clang or gcc-llvm make for a buggy MRI,
