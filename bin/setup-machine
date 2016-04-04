@@ -190,6 +190,7 @@ defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool 
 defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
-
+# Disable dumb Chrome swipe gesture
+defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
 
 echo "Restart the computer now for good effect :)"
