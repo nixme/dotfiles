@@ -9,7 +9,7 @@ cd ~
 git init
 git remote add -f origin git@github.com:nixme/dotfiles.git
 
-git reset hard -- origin/master
+git reset --hard origin/master
 
 git update-index --assume-unchanged ~/.zsh/local-env.zsh
 
