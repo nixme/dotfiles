@@ -79,7 +79,7 @@ vagrant plugin install vagrant-parallels
 
 ################################ ZSH & DOTFILES ################################
 
-brew install --disable-etcdir zsh
+brew install zsh
 homebrew_zsh=/usr/local/bin/zsh
 echo $homebrew_zsh | sudo tee -a /etc/shells
 sudo chsh -s $homebrew_zsh $USER
